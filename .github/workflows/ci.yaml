@@ -75,16 +75,16 @@ jobs:
   
       - name: Configure Maven to use Artifactory virtual repository based on branch and run tests, build and deploy
         env:
-          # GitHub Actionsがデフォルトで設定している可能性のあるオプションを無効化
+          # Native Modeを有効にしてExtractorの干渉を防ぐ
+          JF_MVN_EXTRACTOR_NATIVE: "true"
+          # または
+          JFROG_RUN_NATIVE: "true"
           MAVEN_OPTS: "-Dmaven.multiModuleProjectDirectory=$GITHUB_WORKSPACE"
-          # JFrog CLIにシステム標準のmvnではなく、プロジェクトのmvnwを使わせる設定
-          JF_MVN_PATH: "./mvnw"
         run: |
-          #.jfrog directory
+          # remove .jfrog directory
           rm -rf .jfrog
           # debug
-          chmod +x mvnw
-          ./mvnw -version
+          mvn -version
 
           # Configure artifactory repositories based on env
           MVN_VIRTUAL_REPO="${{ env.JFROG_PROJECT_KEY }}-${{ env.MVN_REPO_PREFIX }}-${{ env.REPO_ENV }}-virtual"
