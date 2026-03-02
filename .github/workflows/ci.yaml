@@ -82,7 +82,7 @@ jobs:
           MAVEN_OPTS: "-Dmaven.multiModuleProjectDirectory=$GITHUB_WORKSPACE"
         run: |
           # remove .jfrog directory
-          rm -rf .jfrog
+          # rm -rf .jfrog
           # debug
           mvn -version
 
@@ -102,7 +102,7 @@ jobs:
         
           # Run tests, build and deploy
           jf mvn clean deploy \
-            -DaltDeploymentRepository=central::${DEPLOY_URL} \
+            -DaltDeploymentRepository=artifactory-release::${DEPLOY_URL} \
             --build-name=${{ env.MVN_BUILD_NAME }}-${{ env.REPO_ENV }} \
             --build-number=$GITHUB_RUN_NUMBER \
             --project ${{ env.JFROG_PROJECT_KEY }}
