@@ -33,7 +33,7 @@ jobs:
         with:
           oidc-provider-name: cocoamaemaeaws-github-provider 
           oidc-audience: cocoamaemaeaws-github-audience
-    
+
       - name: Set up JDK ${{matrix.java}}
         uses: actions/setup-java@v4
         with:
@@ -77,12 +77,8 @@ jobs:
         env:
           # Native Modeを有効にしてExtractorの干渉を防ぐ
           JF_MVN_EXTRACTOR_NATIVE: "true"
-          # または
-          JFROG_RUN_NATIVE: "true"
           MAVEN_OPTS: "-Dmaven.multiModuleProjectDirectory=$GITHUB_WORKSPACE"
         run: |
-          # remove .jfrog directory
-          # rm -rf .jfrog
           # debug
           mvn -version
 
@@ -99,9 +95,10 @@ jobs:
             --repo-resolve-releases $MVN_REMOTE_REPO \
             --repo-deploy-snapshots $MVN_LOCAL_REPO \
             --repo-deploy-releases $MVN_LOCAL_REPO
-        
+
           # Run tests, build and deploy
           jf mvn clean deploy \
+            -s custom-settings.xml \
             -DaltDeploymentRepository=artifactory-release::${DEPLOY_URL} \
             --build-name=${{ env.MVN_BUILD_NAME }}-${{ env.REPO_ENV }} \
             --build-number=$GITHUB_RUN_NUMBER \
