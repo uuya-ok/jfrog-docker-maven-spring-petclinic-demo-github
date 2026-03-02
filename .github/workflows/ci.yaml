@@ -91,9 +91,11 @@ jobs:
           MVN_LOCAL_REPO="${{ env.JFROG_PROJECT_KEY }}-${{ env.MVN_REPO_PREFIX }}-${{ env.REPO_ENV }}-local"
           MVN_REMOTE_REPO="${{ env.JFROG_PROJECT_KEY }}-${{ env.MVN_REPO_PREFIX }}-${{ env.REPO_ENV }}-remote"
           echo "Using Virtual Repo: $MVN_VIRTUAL_REPO"
+          DEPLOY_URL="https://cocoamaemaeaws.jfrog.io{MVN_LOCAL_REPO}"
 
           # Configure Maven to use Artifactory virtual repository based on branch
-          jf mvnc \
+          jf mvnc -DskipTests \
+            -DaltDeploymentRepository=central::default::${DEPLOY_URL} \
             --repo-resolve-snapshots $MVN_VIRTUAL_REPO \
             --repo-resolve-releases $MVN_REMOTE_REPO \
             --repo-deploy-snapshots $MVN_LOCAL_REPO \
