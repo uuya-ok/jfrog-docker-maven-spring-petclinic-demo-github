@@ -1,0 +1,10 @@
+version: 1
+type: maven
+resolver:
+    serverId: soleng.jfrog.io
+    snapshotRepo: td-backend-maven-dev-virtual
+    releaseRepo: td-backend-maven-dev-remote
+deployer:
+    serverId: soleng.jfrog.io
+    snapshotRepo: td-backend-maven-dev-local
+    releaseRepo: td-backend-maven-dev-local
