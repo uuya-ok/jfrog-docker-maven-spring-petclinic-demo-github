@@ -120,7 +120,7 @@ jobs:
 
           # Build and push Docker image to local repo
           JF_DOMAIN=cocoamaemaeaws.jfrog.io
-          IMAGE_NAME="${JF_DOMAIfN}/${DOCKER_VIRTUAL_REPO}/spring-petclinic:${{ github.run_number }}"
+          IMAGE_NAME="${JF_DOMAIN}/${DOCKER_VIRTUAL_REPO}/spring-petclinic:${{ github.run_number }}"
           echo "docker Image name : $IMAGE_NAME"
           JF_BASE_IMAGE="${JF_DOMAIN}/${DOCKER_VIRTUAL_REPO}/eclipse-temurin:17-jdk-focal"
           echo "Docker base image: $JF_BASE_IMAGE"
