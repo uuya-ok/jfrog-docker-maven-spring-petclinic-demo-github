@@ -40,7 +40,7 @@ jobs:
           java-version: 21
           distribution: 'temurin'
           cache: maven
-          mvn-version: '3.9.12'
+          mvn-version: '3.9.8'
 
       - name: Set environment variables based on branch
         run: |
