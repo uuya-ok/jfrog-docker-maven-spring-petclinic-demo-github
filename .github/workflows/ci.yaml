@@ -79,11 +79,11 @@ jobs:
           # GitHub Actionsがデフォルトで設定している可能性のあるオプションを無効化
           MAVEN_OPTS: ""
         run: |
-          # Maven 3.9.8 をダウンロードして展開
-          wget https://archive.apache.org
-          tar -xzf apache-maven-3.9.8-bin.tar.gz
+          # Download Maven 3.9.8 binary directly
+          curl -L https://archive.apache.org -o maven.tar.gz
+          tar -xzf maven.tar.gz
           
-          # パスを最優先に設定
+          # Get the absolute path of the extracted folder
           export M2_HOME=$GITHUB_WORKSPACE/apache-maven-3.9.8
           export PATH=$M2_HOME/bin:$PATH
           
