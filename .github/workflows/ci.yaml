@@ -79,6 +79,13 @@ jobs:
           # GitHub Actionsがデフォルトで設定している可能性のあるオプションを無効化
           MAVEN_OPTS: ""
         run: |
+          # setup-javaがインストールしたMaven 3.9.8のパスを強制的に優先
+          export M2_HOME=$JAVA_HOME/../../../apache-maven/3.9.8/x64
+          export PATH=$M2_HOME/bin:$PATH
+          
+          # debug
+          mvn -version
+
           # Configure artifactory repositories based on env
           MVN_VIRTUAL_REPO="${{ env.JFROG_PROJECT_KEY }}-${{ env.MVN_REPO_PREFIX }}-${{ env.REPO_ENV }}-virtual"
           MVN_LOCAL_REPO="${{ env.JFROG_PROJECT_KEY }}-${{ env.MVN_REPO_PREFIX }}-${{ env.REPO_ENV }}-local"
