@@ -1,4 +1,4 @@
-# How to run the project
+# How to run the project 
 
 ## Build and run directly from the source code on local environments such as macos or windows
 ```
@@ -37,3 +37,4 @@ docker run --name spring-petclinic -p 8080:8080 -d ${JFROG_DOMAIN}/${JFROG_DOCKE
 After running the docker container successfully, access [http://localhost:8080/](http://localhost:8080/) The same UI as above is displayed.
 
 # jfrog-docker-maven-spring-petclinic-demo-github
+
